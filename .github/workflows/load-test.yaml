@@ -1,0 +1,16 @@
+name: Load test
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+
+jobs:
+  load-test-home:
+    name: Run load test at /
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Run k6 local test
+        uses: grafana/k6-action@v0.3.0
+        with:
+          filename: load-test-config-home.js
